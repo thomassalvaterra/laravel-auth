@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\OggettoPortafoglio;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class OggettoPortafoglioController extends Controller
 {
@@ -61,5 +62,25 @@ class OggettoPortafoglioController extends Controller
     public function destroy(OggettoPortafoglio $oggettoPortafoglio)
     {
         //
+    }
+    public function validation($data)
+    {
+        $validated = Validator::make(
+            $data,
+            [
+                "title" => "required|min:5|max:50",
+                "description" => "",
+                "thumb" => "",
+
+            ],
+            [
+                'title.required' => 'Il titolo è necessario',
+                'title.min' => 'Il titolo è troppo corto',
+                'title.max' => 'Il titolo è troppo lungo',
+
+            ]
+        )->validate();
+
+        return $validated;
     }
 }
