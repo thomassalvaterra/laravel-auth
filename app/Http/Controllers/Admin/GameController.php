@@ -33,12 +33,12 @@ class GameController extends Controller
     {
         $validati = $request->validated();
 
-        $newPost = new Game();
-        $newPost->fill($validati);
-        $newPost->save();
+        $newGame = new Game();
+        $newGame->fill($validati);
+        $newGame->save();
 
         // return redirect()->route("admin.games.show", $newGame->id);
-        return redirect()->route("admin.games.show");
+        return redirect()->route("admin.games.index");
     }
 
     /**
