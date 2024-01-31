@@ -1,10 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\Models\Game;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
+use App\Http\Controllers\Controller;
+
+use App\Http\Requests\GameRequest;
 
 class GameController extends Controller
 {
@@ -13,7 +14,8 @@ class GameController extends Controller
      */
     public function index()
     {
-        //
+        $game = Game::class;
+        return view("admin.games.index", compact("game"));
     }
 
     /**
@@ -21,15 +23,22 @@ class GameController extends Controller
      */
     public function create()
     {
-        //
+        return view("admin.games.create");
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(GameRequest $request)
     {
-        //
+        $validati = $request->validated();
+
+        $newPost = new Game();
+        $newPost->fill($validati);
+        $newPost->save();
+
+        // return redirect()->route("admin.games.show", $newGame->id);
+        return redirect()->route("admin.games.index");
     }
 
     /**
@@ -45,13 +54,13 @@ class GameController extends Controller
      */
     public function edit(Game $game)
     {
-        //
+        return view("admin.games.edit");
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Game $game)
+    public function update(GameRequest $request, Game $game)
     {
         //
     }
@@ -62,25 +71,5 @@ class GameController extends Controller
     public function destroy(Game $game)
     {
         //
-    }
-    public function validation($data)
-    {
-        $validated = Validator::make(
-            $data,
-            [
-                "title" => "required|min:5|max:50",
-                "description" => "",
-                "thumb" => "",
-
-            ],
-            [
-                'title.required' => 'Il titolo è necessario',
-                'title.min' => 'Il titolo è troppo corto',
-                'title.max' => 'Il titolo è troppo lungo',
-
-            ]
-        )->validate();
-
-        return $validated;
     }
 }

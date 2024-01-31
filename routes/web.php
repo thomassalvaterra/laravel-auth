@@ -2,9 +2,13 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\DashboardController; //<---- Import del controller precedentemente creato!
+use App\Http\Controllers\Admin\GameController;
+use App\Models\Game;
 
 Route::get('/', function () {
-    return view('welcome');
+    $games = Game::all();
+    return view('welcome', compact("games"));
+    // return view('welcome');
 });
 
 // Route::get('/dashboard', function () {
@@ -20,6 +24,8 @@ Route::middleware(['auth'])
         // - il percorso "/" diventa "admin/"
         // - il nome della rotta ->name("dashboard") diventa ->name("admin.dashboard")
         Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+
+        Route::resource("game", GameController::class);
     });
 
 require __DIR__ . '/auth.php';
