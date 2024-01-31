@@ -14,8 +14,8 @@ class GameController extends Controller
      */
     public function index()
     {
-        $game = Game::class;
-        return view("admin.games.index", compact("game"));
+        $games = Game::all();
+        return view("admin.games.index", compact("games"));
     }
 
     /**
@@ -38,15 +38,16 @@ class GameController extends Controller
         $newPost->save();
 
         // return redirect()->route("admin.games.show", $newGame->id);
-        return redirect()->route("admin.games.index");
+        return redirect()->route("admin.games.show");
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Game $game)
+    public function show(string $id)
     {
-        //
+        $game = Game::find($id);
+        return view("games.show", compact("game"));
     }
 
     /**
