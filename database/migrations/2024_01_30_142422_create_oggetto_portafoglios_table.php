@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('oggetto_portafoglios', function (Blueprint $table) {
             $table->id();
             $table->string('title', 100);
-            $table->text('description')->nullable();
+            $table->string('description');
             $table->string('thumb', 200);
             $table->timestamps();
         });

@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\OggettoPortafoglio;
+use App\Models\Game;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
-class OggettoPortafoglioController extends Controller
+class GameController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -35,7 +35,7 @@ class OggettoPortafoglioController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(OggettoPortafoglio $oggettoPortafoglio)
+    public function show(Game $game)
     {
         //
     }
@@ -43,7 +43,7 @@ class OggettoPortafoglioController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(OggettoPortafoglio $oggettoPortafoglio)
+    public function edit(Game $game)
     {
         //
     }
@@ -51,7 +51,7 @@ class OggettoPortafoglioController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, OggettoPortafoglio $oggettoPortafoglio)
+    public function update(Request $request, Game $game)
     {
         //
     }
@@ -59,7 +59,7 @@ class OggettoPortafoglioController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(OggettoPortafoglio $oggettoPortafoglio)
+    public function destroy(Game $game)
     {
         //
     }
