@@ -9,7 +9,11 @@
                 <div class="card-header">{{ $game->title }}</div>
                 <div class="card-body">{{ $game->description }}</div>
                 <div class="card-body">{{ $game->thumb }}</div>
+<<<<<<< HEAD
                 <a type="button" class="btn btn-primary" href="{{ route('admin.game.show', $game->id) }}">Show</a>
+=======
+                <a type="button" class="btn btn-primary" href="{{ route('admin.game.show', $game->id) }}">Shoe</a>
+>>>>>>> 23be3b45635e840f7dbb08dca535d126091ca20b
                 <a type="button" class="btn btn-success" href="{{ route('admin.game.edit', $game->id) }}">Edit</a>
                 <form action="{{ route('admin.game.destroy', $game->id) }}" method="POST">
                     @csrf
