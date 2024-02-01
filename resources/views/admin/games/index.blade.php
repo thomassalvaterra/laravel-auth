@@ -9,6 +9,13 @@
                 <div class="card-header">{{ $game->title }}</div>
                 <div class="card-body">{{ $game->description }}</div>
                 <div class="card-body">{{ $game->thumb }}</div>
+                <a type="button" class="btn btn-primary" href="{{ route('admin.game.show', $game->id) }}">Shoe</a>
+                <a type="button" class="btn btn-success" href="{{ route('admin.game.edit', $game->id) }}">Edit</a>
+                <form action="{{ route('admin.game.destroy', $game->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <input type="submit" value="Delete" class="btn btn-danger">
+                </form>
             </div>
         </div>
         @endforeach

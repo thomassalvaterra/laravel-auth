@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Models\Game;
 use App\Http\Controllers\Controller;
+use App\Models\Game;
+use App\Http\Requests\StoreGameRequest;
 
-use App\Http\Requests\GameRequest;
+use App\Http\Requests\UpdateGameRequest;
 
 class GameController extends Controller
 {
@@ -29,7 +30,7 @@ class GameController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(GameRequest $request)
+    public function store(StoreGameRequest $request)
     {
         $validati = $request->validated();
 
@@ -38,16 +39,15 @@ class GameController extends Controller
         $newGame->save();
 
         // return redirect()->route("admin.games.show", $newGame->id);
-        return redirect()->route("admin.games.index");
+        return redirect()->route("admin.game.index");
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(Game $game)
     {
-        $game = Game::find($id);
-        return view("games.show", compact("game"));
+        return view("admin.games.show", compact("game"));
     }
 
     /**
@@ -55,15 +55,21 @@ class GameController extends Controller
      */
     public function edit(Game $game)
     {
-        return view("admin.games.edit");
+        return view("admin.games.edit", compact("game"));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(GameRequest $request, Game $game)
+    public function update(UpdateGameRequest $request, Game $game)
     {
-        //
+        $validati = $request->validated();
+
+
+
+        $game->fill($validati);
+        $game->update();
+        return redirect()->route("admin.game.index");
     }
 
     /**
@@ -71,6 +77,8 @@ class GameController extends Controller
      */
     public function destroy(Game $game)
     {
-        //
+        $game->delete();
+
+        return redirect()->route("admin.game.index");
     }
 }
