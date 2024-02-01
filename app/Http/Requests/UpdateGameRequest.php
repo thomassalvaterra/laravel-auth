@@ -22,6 +22,7 @@ class UpdateGameRequest extends FormRequest
     public function rules(): array
     {
         return [
+            "title" => ["min:5", "max:50"],
             "description" => ["required", "min:5", "max:300"],
             "thumb" => ["required", "min:2", "max:150"]
         ];
